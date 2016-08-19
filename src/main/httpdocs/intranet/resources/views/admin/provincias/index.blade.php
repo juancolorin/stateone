@@ -13,10 +13,8 @@
             <table class="table table-striped table-hover table-responsive datatable" id="datatable">
                 <thead>
                     <tr>
-                        <th>
-                            {!! Form::checkbox('delete_all',1,false,['class' => 'mass']) !!}
-                        </th>
                         <th>Nombre</th>
+                        <th></th>
 
                         <th>&nbsp;</th>
                     </tr>
@@ -25,11 +23,8 @@
                 <tbody>
                     @foreach ($provincias as $row)
                         <tr>
-                            <td>
-                                {!! Form::checkbox('del-'.$row->id,1,false,['class' => 'single','data-id'=> $row->id]) !!}
-                            </td>
                             <td>{{ $row->name }}</td>
-
+                            <td><a href="{{ url(config('quickadmin.route').'/localidades/' . $row->id) . '/search' }}" class="btn btn-default">Ver localidades</a></td>
                             <td>
                                 {!! link_to_route('admin.provincias.edit', trans('quickadmin::templates.templates-view_index-edit'), array($row->id), array('class' => 'btn btn-xs btn-info')) !!}
                                 {!! Form::open(array('style' => 'display: inline-block;', 'method' => 'DELETE', 'onsubmit' => "return confirm('".trans("quickadmin::templates.templates-view_index-are_you_sure")."');",  'route' => array('admin.provincias.destroy', $row->id))) !!}
@@ -40,16 +35,6 @@
                     @endforeach
                 </tbody>
             </table>
-            <div class="row">
-                <div class="col-xs-12">
-                    <button class="btn btn-danger" id="delete">
-                        {{ trans('quickadmin::templates.templates-view_index-delete_checked') }}
-                    </button>
-                </div>
-            </div>
-            {!! Form::open(['route' => 'admin.provincias.massDelete', 'method' => 'post', 'id' => 'massDelete']) !!}
-                <input type="hidden" id="send" name="toDelete">
-            {!! Form::close() !!}
         </div>
 	</div>
 @else

@@ -1,5 +1,7 @@
 <?php
 return [
+		
+  'COMPANY' => 'State One',
 
   // templates-menu_field_line
   'templates-menu_field_line-field_db_name' => 'Campo DB name',

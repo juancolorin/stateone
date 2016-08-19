@@ -28,6 +28,26 @@ class ZonasController extends Controller {
 
 		return view('admin.zonas.index', compact('zonas'));
 	}
+	
+	/**
+	 * Display a listing search of zonas
+	 *
+	 * @param Request $request
+	 *
+	 * @return \Illuminate\View\View
+	 */
+	public function search($idLocalidad)
+	{
+		$zonasModel = new Zonas;
+		$zonas = $zonasModel->loadByIdLocalidad($idLocalidad);
+	
+		$localidad = Localidades::find($idLocalidad);
+	
+		return view('admin.zonas.index')->with(array(
+				'zonas' => $zonas,
+				'localidad' => $localidad
+		));
+	}
 
 	/**
 	 * Show the form for creating a new zonas

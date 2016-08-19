@@ -5,14 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Laraveldaily\Quickadmin\Observers\UserActionsObserver;
 
-
-
-
 class Zonas extends Model {
-
-    
-
-    
 
     protected $table    = 'zonas';
     
@@ -20,7 +13,6 @@ class Zonas extends Model {
           'name',
           'localidades_id'
     ];
-    
 
     public static function boot()
     {
@@ -34,8 +26,11 @@ class Zonas extends Model {
         return $this->hasOne('App\Localidades', 'id', 'localidades_id');
     }
 
-
-    
-    
+    public function loadByIdLocalidad($idLocalidad)
+    {
+    	$dql = new Zonas;
+    	$dql = $dql->where('localidades_id', '=', $idLocalidad);
+    	return $dql->get();
+    }
     
 }

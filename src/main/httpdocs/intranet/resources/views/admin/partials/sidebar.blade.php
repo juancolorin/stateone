@@ -1,5 +1,54 @@
 <div class="page-sidebar-wrapper">
     <div class="page-sidebar navbar-collapse collapse">
+        <ul class="page-sidebar-menu" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+                <li>
+                    <a href="{{ url(config('quickadmin.route').'/users') }}">
+                        <i class="fa fa-users"></i>
+                        <span class="title">Usuarios</span>
+                    </a>
+                </li>
+                <li>
+                	<a href="{{ url(config('quickadmin.route').'/propietarios') }}">
+                    	<i class="fa fa fa-users"></i>
+                        <span class="title">Propietarios</span>
+					</a>
+				</li>
+                <li>
+                	<a href="{{ url(config('quickadmin.route').'/clientes') }}">
+                    	<i class="fa fa fa-users"></i>
+                        <span class="title">Clientes</span>
+					</a>
+				</li>
+                <li>
+                	<a href="{{ url(config('quickadmin.route').'/promociones') }}">
+                    	<i class="fa fa-building-o"></i>
+                        <span class="title">Promociones</span>
+					</a>
+				</li>
+				<li>
+                	<a href="{{ url(config('quickadmin.route').'/tiposinmuebles') }}">
+                    	<i class="fa fa fa-circle"></i>
+                        <span class="title">Tipos de inmuebles</span>
+					</a>
+				</li>
+				<li>
+                	<a href="{{ url(config('quickadmin.route').'/provincias') }}">
+                    	<i class="fa fa-location-arrow"></i>
+                        <span class="title">Provincias</span>
+                    </a>
+				</li>
+                <li>
+                	<a href="{{ url(config('quickadmin.route').'/logout') }}">
+                    	<i class="fa fa-sign-out fa-fw"></i>
+                    	<span class="title">Salir</span>
+                	</a>
+            	</li>
+        </ul>
+    </div>
+</div>
+<!--  
+<div class="page-sidebar-wrapper">
+    <div class="page-sidebar navbar-collapse collapse">
         <ul class="page-sidebar-menu"
             data-keep-expanded="false"
             data-auto-scroll="true"
@@ -76,3 +125,4 @@
         </ul>
     </div>
 </div>
+-->

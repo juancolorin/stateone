@@ -28,6 +28,26 @@ class LocalidadesController extends Controller {
 
 		return view('admin.localidades.index', compact('localidades'));
 	}
+	
+	/**
+	 * Display a listing search of localidades
+	 *
+	 * @param Request $request
+	 *
+	 * @return \Illuminate\View\View
+	 */
+	public function search($idProvincia)
+	{
+		$localidadesModel = new Localidades;
+		$localidades = $localidadesModel->loadByIdProvincia($idProvincia);
+		
+		$provincia = Provincias::find($idProvincia);
+		
+		return view('admin.localidades.index')->with(array(
+			'localidades' => $localidades,
+			'provincia' => $provincia
+		));
+	}
 
 	/**
 	 * Show the form for creating a new localidades
