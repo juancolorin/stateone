@@ -33,10 +33,11 @@ class CreatePromocionesTable extends Migration {
             $table->string("dormitorios")->nullable();
             $table->string("banos")->nullable();
             $table->string("aseos")->nullable();
-            $table->tinyInteger("salon")->default(0)->nullable();
+            $table->decimal("m2_salon", 15, 2)->nullable();
+            $table->decimal("m2_cocina", 15, 2)->nullable();
             $table->tinyInteger("terraza")->default(0)->nullable();
             $table->tinyInteger("balcon")->default(0)->nullable();
-            $table->tinyInteger("armarios_empotrados")->default(0)->nullable();
+            $table->string("armarios_empotrados")->nullable();
             $table->tinyInteger("garaje_privado")->default(0)->nullable();
             $table->tinyInteger("aparcamiento")->default(0)->nullable();
             $table->tinyInteger("trastero")->default(0)->nullable();
@@ -78,7 +79,6 @@ class CreatePromocionesTable extends Migration {
             $table->tinyInteger("piscina_comunitaria")->default(0)->nullable();
             $table->tinyInteger("pista_tenis")->default(0)->nullable();
             $table->tinyInteger("pista_padel")->default(0)->nullable();
-            $table->tinyInteger("conserjeria")->default(0)->nullable();
             $table->tinyInteger("parque_infantil")->default(0)->nullable();
             $table->tinyInteger("sistema_seguridad")->default(0)->nullable();
             $table->tinyInteger("zonas_verdes")->default(0)->nullable();

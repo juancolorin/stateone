@@ -3102,3 +3102,6 @@ table {
     padding: 10px 5px;
     margin-bottom: 5px;
 }
+
+.fade {display:none !important;}
+.fade.active {display:block !important;}
