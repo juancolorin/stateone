@@ -20,7 +20,6 @@ return [
     // Default home route
     'homeRoute'          => 'admin',
 	// Default home route
-	'home'          	 => 'admin',
     // Default role to access users and CRUD
     'defaultRole'        => 1
 

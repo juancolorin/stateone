@@ -13,9 +13,6 @@
             <table class="table table-striped table-hover table-responsive datatable" id="datatable">
                 <thead>
                     <tr>
-                        <th>
-                            {!! Form::checkbox('delete_all',1,false,['class' => 'mass']) !!}
-                        </th>
                         <th>Nombre</th>
 
                         <th>&nbsp;</th>
@@ -25,9 +22,6 @@
                 <tbody>
                     @foreach ($tiposinmuebles as $row)
                         <tr>
-                            <td>
-                                {!! Form::checkbox('del-'.$row->id,1,false,['class' => 'single','data-id'=> $row->id]) !!}
-                            </td>
                             <td>{{ $row->name }}</td>
 
                             <td>
@@ -40,16 +34,6 @@
                     @endforeach
                 </tbody>
             </table>
-            <div class="row">
-                <div class="col-xs-12">
-                    <button class="btn btn-danger" id="delete">
-                        {{ trans('quickadmin::templates.templates-view_index-delete_checked') }}
-                    </button>
-                </div>
-            </div>
-            {!! Form::open(['route' => 'admin.tiposinmuebles.massDelete', 'method' => 'post', 'id' => 'massDelete']) !!}
-                <input type="hidden" id="send" name="toDelete">
-            {!! Form::close() !!}
         </div>
 	</div>
 @else

@@ -2,7 +2,7 @@
     <div class="page-sidebar navbar-collapse collapse">
         <ul class="page-sidebar-menu" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
                 <li>
-                    <a href="{{ url(config('quickadmin.route').'/users') }}">
+                    <a href="/users">
                         <i class="fa fa-users"></i>
                         <span class="title">Usuarios</span>
                     </a>
@@ -38,7 +38,7 @@
                     </a>
 				</li>
                 <li>
-                	<a href="{{ url(config('quickadmin.route').'/logout') }}">
+                	<a href="/logout">
                     	<i class="fa fa-sign-out fa-fw"></i>
                     	<span class="title">Salir</span>
                 	</a>
