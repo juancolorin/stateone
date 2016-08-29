@@ -44,6 +44,9 @@
     }
 }
 
+.overlow {overflow: hidden;}
+.overlow span{ word-wrap: break-word;}
+
 /***
 Page Header
 ***/

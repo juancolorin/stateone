@@ -9,7 +9,9 @@ use App\Promociones;
 use App\Http\Requests\CreatePromocionesRequest;
 use App\Http\Requests\UpdatePromocionesRequest;
 use Illuminate\Http\Request;
+use Yajra\Datatables\Datatables;
 
+use DB;
 use App\Provincias;
 use App\Localidades;
 use App\Zonas;
@@ -27,9 +29,43 @@ class PromocionesController extends Controller {
 	 */
 	public function index(Request $request)
     {
-        $promociones = Promociones::with("provincias")->with("localidades")->with("zonas")->with("tiposinmuebles")->get();
+        $tiposinmuebles = TiposInmuebles::lists("name", "id")->prepend('Ninguno', '');
+        $estado = Promociones::$estado;
+        $operacion = Promociones::$operacion;
 
-		return view('admin.promociones.index', compact('promociones'));
+		return view('admin.promociones.index', compact("tiposinmuebles", "estado", "operacion"));
+	}
+	
+	/**
+	 * Display a searching of promociones
+	 *
+	 * @param Request $request
+	 *
+	 * @return \Illuminate\View\View
+	 */
+	public function datatables(Request $request)
+	{
+		$response = Promociones::query()
+		->leftJoin('provincias', 'provincias.id', '=', 'promociones.provincias_id')
+		->leftJoin('localidades', 'localidades.id', '=', 'promociones.localidades_id')
+		->leftJoin('zonas', 'zonas.id', '=', 'promociones.zonas_id')
+		->leftJoin('tiposinmuebles', 'tiposinmuebles.id', '=', 'promociones.tiposinmuebles_id')
+		->select(
+			'promociones.id as id',
+			'promociones.estado as estado',
+			'promociones.operacion as operacion',
+			'promociones.nombre as nombre',
+			'promociones.publicado as publicado',
+			'provincias.name as provincia_name',
+			'localidades.name as localidad_name',
+			'zonas.name as zona_name',
+			'tiposinmuebles.name as tipo_inmueble_name'
+		)
+		->get();
+		
+		$response = collect($response);
+		
+		return Datatables::of($response)->make(true);
 	}
 
 	/**
@@ -39,16 +75,11 @@ class PromocionesController extends Controller {
 	 */
 	public function create()
 	{
-	    $provincias = Provincias::lists("name", "id")->prepend('Ninguno', '');
-$localidades = Localidades::lists("name", "id")->prepend('Ninguno', '');
-$zonas = Zonas::lists("name", "id")->prepend('Ninguno', '');
-$tiposinmuebles = TiposInmuebles::lists("name", "id")->prepend('Ninguno', '');
-
-	    
+		$tiposinmuebles = TiposInmuebles::lists("name", "id")->prepend('Ninguno', '');
         $estado = Promociones::$estado;
         $operacion = Promociones::$operacion;
 
-	    return view('admin.promociones.create', compact("provincias", "localidades", "zonas", "tiposinmuebles", "estado", "operacion"));
+	    return view('admin.promociones.create', compact("tiposinmuebles", "estado", "operacion"));
 	}
 
 	/**
@@ -58,7 +89,6 @@ $tiposinmuebles = TiposInmuebles::lists("name", "id")->prepend('Ninguno', '');
 	 */
 	public function store(CreatePromocionesRequest $request)
 	{
-	    
 		Promociones::create($request->all());
 
 		return redirect()->route('admin.promociones.index');
@@ -74,15 +104,11 @@ $tiposinmuebles = TiposInmuebles::lists("name", "id")->prepend('Ninguno', '');
 	{
 		$promociones = Promociones::find($id);
 	    $provincias = Provincias::lists("name", "id")->prepend('Ninguno', '');
-$localidades = Localidades::lists("name", "id")->prepend('Ninguno', '');
-$zonas = Zonas::lists("name", "id")->prepend('Ninguno', '');
-$tiposinmuebles = TiposInmuebles::lists("name", "id")->prepend('Ninguno', '');
-
-	    
+		$tiposinmuebles = TiposInmuebles::lists("name", "id")->prepend('Ninguno', '');
         $estado = Promociones::$estado;
         $operacion = Promociones::$operacion;
 
-		return view('admin.promociones.edit', compact('promociones', "provincias", "localidades", "zonas", "tiposinmuebles", "estado", "operacion"));
+		return view('admin.promociones.edit', compact('promociones', "provincias", "tiposinmuebles", "estado", "operacion", "operacion"));
 	}
 
 	/**
@@ -94,12 +120,9 @@ $tiposinmuebles = TiposInmuebles::lists("name", "id")->prepend('Ninguno', '');
 	public function update($id, UpdatePromocionesRequest $request)
 	{
 		$promociones = Promociones::findOrFail($id);
-
-        
-
 		$promociones->update($request->all());
-
-		return redirect()->route('admin.promociones.index');
+		
+		return redirect()->route('admin.promociones.edit', ['id' => $id])->with('success', 'La operación se ha realizado correctamente.');
 	}
 
 	/**

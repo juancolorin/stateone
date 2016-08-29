@@ -13,16 +13,7 @@ class CreateImagenesTable extends Migration {
      */
     public function up()
     {
-        Model::unguard();
-        Schema::create('imagenes',function(Blueprint $table){
-            $table->increments("id")->unsigned();
-            $table->integer("promocion_id")->unsigned();
-            $table->string("name");
-            $table->string("image");
-            $table->tinyInteger("publicada")->default(0)->nullable();
-            $table->foreign('promocion_id')->references('id')->on('promociones')->onDelete('CASCADE')->onUpdate('CASCADE');
-            $table->timestamps();
-        });
+        
     }
 
     /**
@@ -32,7 +23,7 @@ class CreateImagenesTable extends Migration {
      */
     public function down()
     {
-        Schema::drop('imagenes');
+       
     }
 
 }

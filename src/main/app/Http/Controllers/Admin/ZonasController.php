@@ -48,6 +48,21 @@ class ZonasController extends Controller {
 				'localidad' => $localidad
 		));
 	}
+	
+	/**
+	 * Display a listing search of zonas
+	 *
+	 * @param Request $request
+	 *
+	 * @return \Illuminate\View\View
+	 */
+	public function searchjson($idLocalidad)
+	{
+		$zonasModel = new Zonas;
+		$zonas = $zonasModel->loadByIdLocalidad($idLocalidad);
+	
+		return response()->json($zonas);
+	}
 
 	/**
 	 * Show the form for creating a new zonas

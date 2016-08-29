@@ -13,6 +13,12 @@
 			</ul>
 		</div>
 		@endif
+		
+		@if (session('success'))
+		    <div class="alert alert-success">
+		        {{ session('success') }}
+		    </div>
+		@endif
 	</div>
 </div>
 
@@ -36,34 +42,39 @@
 			{!! Form::label('id', 'Código de promoción', array('class'=>'col-sm-2
 			control-label')) !!}
 			<div class="col-sm-10">{!! Form::text('id', null, ['class' =>
-				'form-control', 'readonly' => 'true']) !!}</div>
+				'form-control', 'readonly' => 'true']) !!}
+			</div>
 		</div>
 		<div class="form-group">
 			{!! Form::label('publicado', 'Publicar en web',
 			array('class'=>'col-sm-2 control-label')) !!}
 			<div class="col-sm-10">{!! Form::hidden('publicado','') !!} {!!
-				Form::checkbox('publicado', 1, $promociones->publicado == 1) !!}</div>
+				Form::checkbox('publicado', 1, $promociones->publicado == 1) !!}
+			</div>
 		</div>
 		<div class="form-group">
 			{!! Form::label('estado', 'Estado*', array('class'=>'col-sm-2
 			control-label')) !!}
 			<div class="col-sm-10">{!! Form::select('estado', $estado,
 				old('estado',$promociones->estado), array('class'=>'form-control'))
-				!!}</div>
+				!!}
+			</div>
 		</div>
 		<div class="form-group">
 			{!! Form::label('operacion', 'Operación*', array('class'=>'col-sm-2
 			control-label')) !!}
 			<div class="col-sm-10">{!! Form::select('operacion', $operacion,
 				old('operacion',$promociones->operacion),
-				array('class'=>'form-control')) !!}</div>
+				array('class'=>'form-control')) !!}
+			</div>
 		</div>
 		<div class="form-group">
 			{!! Form::label('nombre', 'Nombre*', array('class'=>'col-sm-2
 			control-label')) !!}
 			<div class="col-sm-10">{!! Form::text('nombre',
 				old('nombre',$promociones->nombre), array('class'=>'form-control'))
-				!!}</div>
+				!!}
+			</div>
 		</div>
 		
 		<div class="form-group">
@@ -71,35 +82,46 @@
 			array('class'=>'col-sm-2 control-label')) !!}
 			<div class="col-sm-10">{!! Form::select('provincias_id', $provincias,
 				old('provincias_id',$promociones->provincias_id),
-				array('class'=>'form-control')) !!}</div>
+				array('class'=>'form-control')) !!}
+			</div>
 		</div>
 		<div class="form-group">
 			{!! Form::label('localidades_id', 'Localidad',
 			array('class'=>'col-sm-2 control-label')) !!}
-			<div class="col-sm-10">{!! Form::select('localidades_id',
-				$localidades, old('localidades_id',$promociones->localidades_id),
-				array('class'=>'form-control')) !!}</div>
+			<div class="col-sm-10">
+				<div id="localidades" data-selected="{{$promociones->localidades_id}}">
+					<select class="selectpicker form-control"  name="localidades_id" data-live-search="true" >
+						<option value="0">Ninguna</option>
+					</select>
+				</div>
+			</div>
 		</div>
 		<div class="form-group">
 			{!! Form::label('zonas_id', 'Zona', array('class'=>'col-sm-2
 			control-label')) !!}
-			<div class="col-sm-10">{!! Form::select('zonas_id', $zonas,
-				old('zonas_id',$promociones->zonas_id),
-				array('class'=>'form-control')) !!}</div>
+			<div class="col-sm-10">
+				<div id="zonas" data-selected="{{$promociones->zonas_id}}">
+					<select class="selectpicker form-control"  name="zonas_id" data-live-search="true" >
+						<option value="0">Ninguna</option>
+					</select>
+				</div>
+			</div>
 		</div>
 		<div class="form-group">
 			{!! Form::label('latitud', 'Latitud', array('class'=>'col-sm-2
 			control-label')) !!}
 			<div class="col-sm-10">{!! Form::text('latitud',
 				old('latitud',$promociones->latitud),
-				array('class'=>'form-control')) !!}</div>
+				array('class'=>'form-control')) !!}
+			</div>
 		</div>
 		<div class="form-group">
 			{!! Form::label('longitud', 'Longitud', array('class'=>'col-sm-2
 			control-label')) !!}
 			<div class="col-sm-10">{!! Form::text('longitud',
 				old('longitud',$promociones->longitud),
-				array('class'=>'form-control')) !!}</div>
+				array('class'=>'form-control')) !!}
+			</div>
 		</div>
 		<div class="form-group">
 			{!! Form::label('tiposinmuebles_id', 'Tipo de inmueble (Principal)*',
@@ -107,43 +129,58 @@
 			<div class="col-sm-10">{!! Form::select('tiposinmuebles_id',
 				$tiposinmuebles,
 				old('tiposinmuebles_id',$promociones->tiposinmuebles_id),
-				array('class'=>'form-control')) !!}</div>
+				array('class'=>'form-control')) !!}
+			</div>
 		</div>
 		<div class="form-group">
 			{!! Form::label('precio', 'Precio', array('class'=>'col-sm-2
 			control-label')) !!}
 			<div class="col-sm-10">{!! Form::text('precio',
 				old('precio',$promociones->precio), array('class'=>'form-control'))
-				!!}</div>
+				!!}
+			</div>
 		</div>
 		<div class="form-group">
 			{!! Form::label('precio_min', 'Precio mínimo',
 			array('class'=>'col-sm-2 control-label')) !!}
 			<div class="col-sm-10">{!! Form::text('precio_min',
 				old('precio_min',$promociones->precio_min),
-				array('class'=>'form-control')) !!}</div>
+				array('class'=>'form-control')) !!}
+			</div>
 		</div>
 		<div class="form-group">
 			{!! Form::label('direccion', 'Dirección', array('class'=>'col-sm-2
 			control-label')) !!}
 			<div class="col-sm-10">{!! Form::text('direccion',
 				old('direccion',$promociones->direccion),
-				array('class'=>'form-control')) !!}</div>
+				array('class'=>'form-control')) !!}
+			</div>
 		</div>
 		<div class="form-group">
 			{!! Form::label('cp', 'C.P.', array('class'=>'col-sm-2
 			control-label')) !!}
 			<div class="col-sm-10">{!! Form::text('cp',
-				old('cp',$promociones->cp), array('class'=>'form-control')) !!}</div>
+				old('cp',$promociones->cp), array('class'=>'form-control')) !!}
+			</div>
 		</div>
 		
 		<div class="form-group">
 		    {!! Form::label('descripcion', 'Descripción', array('class'=>'col-sm-2 control-label')) !!}
 		    <div class="col-sm-10">
 		        {!! Form::textarea('descripcion', old('descripcion',$promociones->descripcion), array('class'=>'form-control ckeditor')) !!}
-		        
 		    </div>
 		</div>
+		
+		<div class="form-group">
+			<div class="col-sm-10 col-sm-offset-2">
+				{!! Form::submit(trans('quickadmin::templates.templates-view_edit-update'),
+				array('class' => 'btn btn-primary')) !!} {!!
+				link_to_route('admin.promociones.index',
+				trans('quickadmin::templates.templates-view_edit-cancel'), null,
+				array('class' => 'btn btn-default')) !!}
+			</div>
+		</div>
+		
 	</div>
 	
 	<div id="distribucion" class="tab-pane fade" role="tabpanel" aria-labelledby="distribucion-tab">
@@ -152,28 +189,32 @@
 			array('class'=>'col-sm-2 control-label')) !!}
 			<div class="col-sm-10">{!! Form::text('dormitorios',
 				old('dormitorios',$promociones->dormitorios),
-				array('class'=>'form-control')) !!}</div>
+				array('class'=>'form-control')) !!}
+			</div>
 		</div>
 		<div class="form-group">
 			{!! Form::label('banos', 'Baños', array('class'=>'col-sm-2
 			control-label')) !!}
 			<div class="col-sm-10">{!! Form::text('banos',
 				old('banos',$promociones->banos), array('class'=>'form-control'))
-				!!}</div>
+				!!}
+			</div>
 		</div>
 		<div class="form-group">
 			{!! Form::label('aseos', 'Aseos', array('class'=>'col-sm-2
 			control-label')) !!}
 			<div class="col-sm-10">{!! Form::text('aseos',
 				old('aseos',$promociones->aseos), array('class'=>'form-control'))
-				!!}</div>
+				!!}
+			</div>
 		</div>
 		<div class="form-group">
 			{!! Form::label('armarios_empotrados', 'Armarios empotrados',
 			array('class'=>'col-sm-2 control-label')) !!}
 			<div class="col-sm-10">{!! Form::text('armarios_empotrados',
 				old('armarios_empotrados',$promociones->armarios_empotrados),
-				array('class'=>'form-control')) !!}</div>
+				array('class'=>'form-control')) !!}
+			</div>
 		</div>
 		
 		<ul class="list-group col-sm-4">
@@ -217,6 +258,16 @@
 				== 1) !!} Ascensor
   			</li>
 		</ul>
+		
+		<div class="form-group">
+			<div class="col-sm-10 col-sm-offset-2">
+				{!! Form::submit(trans('quickadmin::templates.templates-view_edit-update'),
+				array('class' => 'btn btn-primary')) !!} {!!
+				link_to_route('admin.promociones.index',
+				trans('quickadmin::templates.templates-view_edit-cancel'), null,
+				array('class' => 'btn btn-default')) !!}
+			</div>
+		</div>
 	</div>
 	
 	<div id="superficie" class="tab-pane fade" role="tabpanel" aria-labelledby="superficie-tab">
@@ -225,56 +276,74 @@
 			control-label')) !!}
 			<div class="col-sm-10">{!! Form::text('plantas',
 				old('plantas',$promociones->plantas),
-				array('class'=>'form-control')) !!}</div>
+				array('class'=>'form-control')) !!}
+			</div>
 		</div>
 		<div class="form-group">
 			{!! Form::label('m2_construidos', 'm2 construidos',
 			array('class'=>'col-sm-2 control-label')) !!}
 			<div class="col-sm-10">{!! Form::text('m2_construidos',
 				old('m2_construidos',$promociones->m2_construidos),
-				array('class'=>'form-control')) !!}</div>
+				array('class'=>'form-control')) !!}
+			</div>
 		</div>
 		<div class="form-group">
 			{!! Form::label('m2_utiles', 'm2 utiles', array('class'=>'col-sm-2
 			control-label')) !!}
 			<div class="col-sm-10">{!! Form::text('m2_utiles',
 				old('m2_utiles',$promociones->m2_utiles),
-				array('class'=>'form-control')) !!}</div>
+				array('class'=>'form-control')) !!}
+			</div>
 		</div>
 		<div class="form-group">
 			{!! Form::label('m2_parcela', 'm2 parcela', array('class'=>'col-sm-2
 			control-label')) !!}
 			<div class="col-sm-10">{!! Form::text('m2_parcela',
 				old('m2_parcela',$promociones->m2_parcela),
-				array('class'=>'form-control')) !!}</div>
+				array('class'=>'form-control')) !!}
+			</div>
 		</div>
 		<div class="form-group">
 			{!! Form::label('m2_terraza', 'm2 terraza', array('class'=>'col-sm-2
 			control-label')) !!}
 			<div class="col-sm-10">{!! Form::text('m2_terraza',
 				old('m2_terraza',$promociones->m2_terraza),
-				array('class'=>'form-control')) !!}</div>
+				array('class'=>'form-control')) !!}
+			</div>
 		</div>
 		<div class="form-group">
 			{!! Form::label('m2_patio', 'm2 patio', array('class'=>'col-sm-2
 			control-label')) !!}
 			<div class="col-sm-10">{!! Form::text('m2_patio',
 				old('m2_patio',$promociones->m2_patio),
-				array('class'=>'form-control')) !!}</div>
+				array('class'=>'form-control')) !!}
+			</div>
 		</div>
 		<div class="form-group">
 			{!! Form::label('m2_salon', 'm2 salón', array('class'=>'col-sm-2
 			control-label')) !!}
 			<div class="col-sm-10">{!! Form::text('m2_salon',
 				old('m2_salon',$promociones->m2_salon),
-				array('class'=>'form-control')) !!}</div>
+				array('class'=>'form-control')) !!}
+			</div>
 		</div>
 		<div class="form-group">
 			{!! Form::label('m2_cocina', 'm2 cocina', array('class'=>'col-sm-2
 			control-label')) !!}
 			<div class="col-sm-10">{!! Form::text('m2_cocina',
 				old('m2_cocina',$promociones->m2_cocina),
-				array('class'=>'form-control')) !!}</div>
+				array('class'=>'form-control')) !!}
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<div class="col-sm-10 col-sm-offset-2">
+				{!! Form::submit(trans('quickadmin::templates.templates-view_edit-update'),
+				array('class' => 'btn btn-primary')) !!} {!!
+				link_to_route('admin.promociones.index',
+				trans('quickadmin::templates.templates-view_edit-cancel'), null,
+				array('class' => 'btn btn-default')) !!}
+			</div>
 		</div>
 	</div>
 	
@@ -284,54 +353,72 @@
 			array('class'=>'col-sm-2 control-label')) !!}
 			<div class="col-sm-10">{!! Form::text('tipo_suelo',
 				old('tipo_suelo',$promociones->tipo_suelo),
-				array('class'=>'form-control')) !!}</div>
+				array('class'=>'form-control')) !!}
+			</div>
 		</div>
 		<div class="form-group">
 			{!! Form::label('climatizacion', 'Climatización',
 			array('class'=>'col-sm-2 control-label')) !!}
 			<div class="col-sm-10">{!! Form::text('climatizacion',
 				old('climatizacion',$promociones->climatizacion),
-				array('class'=>'form-control')) !!}</div>
+				array('class'=>'form-control')) !!}
+			</div>
 		</div>
 		<div class="form-group">
 			{!! Form::label('ventanas', 'Ventanas', array('class'=>'col-sm-2
 			control-label')) !!}
 			<div class="col-sm-10">{!! Form::text('ventanas',
 				old('ventanas',$promociones->ventanas),
-				array('class'=>'form-control')) !!}</div>
+				array('class'=>'form-control')) !!}
+			</div>
 		</div>
 		<div class="form-group">
 			{!! Form::label('agua_caliente', 'Agua caliente',
 			array('class'=>'col-sm-2 control-label')) !!}
 			<div class="col-sm-10">{!! Form::text('agua_caliente',
 				old('agua_caliente',$promociones->agua_caliente),
-				array('class'=>'form-control')) !!}</div>
+				array('class'=>'form-control')) !!}
+			</div>
 		</div>
 		<div class="form-group">
 			{!! Form::label('cocina', 'Cocina', array('class'=>'col-sm-2
 			control-label')) !!}
 			<div class="col-sm-10">{!! Form::text('cocina',
 				old('cocina',$promociones->cocina), array('class'=>'form-control'))
-				!!}</div>
+				!!}
+			</div>
 		</div>
 		<div class="form-group">
 			{!! Form::label('calefacción', 'Calefacción',
 			array('class'=>'col-sm-2 control-label')) !!}
 			<div class="col-sm-10">{!! Form::text('calefacción',
 				old('calefacción',$promociones->calefacción),
-				array('class'=>'form-control')) !!}</div>
+				array('class'=>'form-control')) !!}
+			</div>
 		</div>
 		<div class="form-group">
 			{!! Form::label('aa', 'A/A', array('class'=>'col-sm-2
 			control-label')) !!}
 			<div class="col-sm-10">{!! Form::text('aa',
-				old('aa',$promociones->aa), array('class'=>'form-control')) !!}</div>
+				old('aa',$promociones->aa), array('class'=>'form-control')) !!}
+			</div>
 		</div>
 		<div class="form-group">
 			{!! Form::label('ce', 'Certificado energético',
 			array('class'=>'col-sm-2 control-label')) !!}
 			<div class="col-sm-10">{!! Form::text('ce',
-				old('ce',$promociones->ce), array('class'=>'form-control')) !!}</div>
+				old('ce',$promociones->ce), array('class'=>'form-control')) !!}
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<div class="col-sm-10 col-sm-offset-2">
+				{!! Form::submit(trans('quickadmin::templates.templates-view_edit-update'),
+				array('class' => 'btn btn-primary')) !!} {!!
+				link_to_route('admin.promociones.index',
+				trans('quickadmin::templates.templates-view_edit-cancel'), null,
+				array('class' => 'btn btn-default')) !!}
+			</div>
 		</div>
 	</div>
 	
@@ -508,27 +595,94 @@
   			
 		</ul>
 		
-	</div>
-	
-	<div id="imagenes" class="tab-pane fade" role="tabpanel" aria-labelledby="imagenes-tab">
-	
-	</div>
-	
-	<div id="ficheros" class="tab-pane fade" role="tabpanel" aria-labelledby="ficheros-tab">
-	
-	</div>
-	
-	<div class="form-group">
-		<div class="col-sm-10 col-sm-offset-2">
-			{!! Form::submit(trans('quickadmin::templates.templates-view_edit-update'),
-			array('class' => 'btn btn-primary')) !!} {!!
-			link_to_route('admin.promociones.index',
-			trans('quickadmin::templates.templates-view_edit-cancel'), null,
-			array('class' => 'btn btn-default')) !!}
+		<div class="form-group">
+			<div class="col-sm-10 col-sm-offset-2">
+				{!! Form::submit(trans('quickadmin::templates.templates-view_edit-update'),
+				array('class' => 'btn btn-primary')) !!} {!!
+				link_to_route('admin.promociones.index',
+				trans('quickadmin::templates.templates-view_edit-cancel'), null,
+				array('class' => 'btn btn-default')) !!}
+			</div>
 		</div>
+		
 	</div>
 	
 	{!! Form::close() !!}
+	
+	<div id="imagenes" class="tab-pane fade" role="tabpanel" aria-labelledby="imagenes-tab">
+		<form id="fileuploadImagenesPromocion" action="#" method="POST" enctype="multipart/form-data" data-promocion-id="{{ $promociones->id }}">
+			<input name="_token" type="hidden" value="{{ csrf_token() }}">
+			<input name="promocion_id" type="hidden" value="{{$promociones->id}}">
+	        <div class="row fileupload-buttonbar">
+	            <div class="col-lg-7">
+	                <span class="btn btn-success fileinput-button">
+	                    <i class="fa fa-plus"></i>
+	                    <span>Añadir imágenes...</span>
+	                    <input type="file" name="files[]" multiple="">
+	                </span>
+	            </div>
+	            <div class="col-lg-5 fileupload-progress fade">
+	                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+	                    <div class="progress-bar progress-bar-success" style="width:0%;"></div>
+	                </div>
+	                <div class="progress-extended">&nbsp;</div>
+	            </div>
+	        </div>
+	        
+	        <br />
+	        <div id="imagenes-promocion-upload" class="row"></div>
+	        
+	        <h2>Imágenes</h2>
+	        <table role="presentation" id="listadoImagenesPromocion" data-promocion-id="{{ $promociones->id }}" data-token="{{ csrf_token() }}" class="table table-striped">
+	        	<thead class="files">
+	        		<th>Imagen</th>
+	        		<th>Título</th>
+	        		<th>Principal</th>
+	        		<th>Publicada</th>
+	        		<th></th>
+	        	</thead>
+	        	<tbody class="files"></tbody>
+	        </table>
+	    </form>
+	</div>
+	
+	<div id="ficheros" class="tab-pane fade" role="tabpanel" aria-labelledby="ficheros-tab">
+		<form id="fileuploadFicherosPromocion" action="#" method="POST" enctype="multipart/form-data" data-promocion-id="{{ $promociones->id }}">
+			<input name="_token" type="hidden" value="{{ csrf_token() }}">
+			<input name="promocion_id" type="hidden" value="{{$promociones->id}}">
+	        <div class="row fileupload-buttonbar">
+	            <div class="col-lg-7">
+	                <span class="btn btn-success fileinput-button">
+	                    <i class="fa fa-plus"></i>
+	                    <span>Añadir ficheros...</span>
+	                    <input type="file" name="files[]" multiple="">
+	                </span>
+	            </div>
+	            <div class="col-lg-5 fileupload-progress fade">
+	                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+	                    <div class="progress-bar progress-bar-success" style="width:0%;"></div>
+	                </div>
+	                <div class="progress-extended">&nbsp;</div>
+	            </div>
+	        </div>
+	        
+	        <br />
+	        <div id="ficheros-promocion-upload" class="row"></div>
+	        
+	        <h2>Ficheros</h2>
+	        <table role="presentation" id="listadoFicherosPromocion" data-promocion-id="{{ $promociones->id }}" data-token="{{ csrf_token() }}" class="table table-striped">
+	        	<thead class="files">
+	        		<th>Fichero</th>
+	        		<th>Título</th>
+	        		<th>Principal</th>
+	        		<th>Publicado</th>
+	        		<th></th>
+	        	</thead>
+	        	<tbody class="files"></tbody>
+	        </table>
+	    </form>
+	</div>
+	
 </div>
 
 @endsection

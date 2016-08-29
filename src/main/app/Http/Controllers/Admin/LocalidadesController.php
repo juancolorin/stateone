@@ -48,6 +48,21 @@ class LocalidadesController extends Controller {
 			'provincia' => $provincia
 		));
 	}
+	
+	/**
+	 * Display a listing search of localidades
+	 *
+	 * @param Request $request
+	 *
+	 * @return \Illuminate\View\View
+	 */
+	public function searchjson($idProvincia)
+	{
+		$localidadesModel = new Localidades;
+		$localidades = $localidadesModel->loadByIdProvincia($idProvincia);
+	
+		return response()->json($localidades);
+	}
 
 	/**
 	 * Show the form for creating a new localidades

@@ -5,6 +5,22 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.4.5/jquery-ui-timepicker-addon.min.js"></script>
 <script src="//cdn.ckeditor.com/4.5.4/full/ckeditor.js"></script>
 <script src="{{ url('quickadmin/js') }}/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.0/js/bootstrap-select.min.js"></script>
+
+<script src="{{ url('quickadmin/file-upload') }}/js/vendor/jquery.ui.widget.js"></script>
+<script src="//blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
+<script src="//blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
+<script src="{{ url('quickadmin/file-upload') }}/js/jquery.iframe-transport.js"></script>
+<script src="{{ url('quickadmin/file-upload') }}/js/jquery.fileupload.js"></script>
+<script src="{{ url('quickadmin/file-upload') }}/js/jquery.fileupload-process.js"></script>
+<script src="{{ url('quickadmin/file-upload') }}/js/jquery.fileupload-image.js"></script>
+<script src="{{ url('quickadmin/file-upload') }}/js/jquery.fileupload-audio.js"></script>
+<script src="{{ url('quickadmin/file-upload') }}/js/jquery.fileupload-video.js"></script>
+<script src="{{ url('quickadmin/file-upload') }}/js/jquery.fileupload-validate.js"></script>
+
+<script src="{{ url('quickadmin/js') }}/gestion-promociones.js"></script>
+<script src="{{ url('quickadmin/js') }}/gestion-inmuebles.js"></script>
+
 <script src="{{ url('quickadmin/js') }}/main.js"></script>
 
 <script>

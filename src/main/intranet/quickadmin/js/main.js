@@ -16,10 +16,6 @@ $(document).ready(function () {
         ]
     });
 
-    $('.ckeditor').each(function () {
-        CKEDITOR.replace($(this));
-    })
-
     $('.mass').click(function () {
         if ($(this).is(":checked")) {
             $('.single').each(function () {
@@ -95,4 +91,86 @@ $(document).ready(function () {
         }
     });
     
+    if ($("#provincias_id").length > 0 && $("#provincias_id").val() != "Ninguno") {
+    	loadLocalidades($("#provincias_id").val());
+    }
+    
+    $("#provincias_id").change(function() {
+    	loadLocalidades($(this).val());
+    });
+    
+    $('ul.nav.nav-tabs a').click(function (e) {
+	  e.preventDefault();
+	  $(".active.in").removeClass("active").removeClass("id");
+	  $(this).tab('show');
+	})
+    
+    // Poner al final ya que da error
+    $('.ckeditor').each(function () {
+        CKEDITOR.replace($(this));
+    })
 });
+
+function loadLocalidades(idProvincia) {
+	if (idProvincia != "") {
+		// Assign handlers immediately after making the request,
+		// and remember the jqxhr object for this request
+		var jqxhr = $.getJSON("/admin/localidades/" + idProvincia + "/search/json", function() {
+			//console.log( "success" );
+		}).fail(function() {
+		    console.log( "error" );
+		});
+		 
+		// Perform other work here ...
+		 
+		// Set another completion function for the request above
+		jqxhr.complete(function() {
+			if (jqxhr.responseJSON) {
+				var html = '<option value="0">Ninguna</option>';
+				var selected = '';
+				$.each(jqxhr.responseJSON, function(index, item) {
+					if (item.id == $("#localidades").data("selected")) {
+						selected = 'selected="selected"';
+					}
+					html += '<option value="' + item.id + '" ' + selected + '>' + item.name + '</option>';
+				});
+				$("#localidades select").html(html).selectpicker('refresh').selectpicker('show');
+				$("#localidades select").change(function() {
+					loadZonas($(this).val());
+				});
+			}
+	
+			if ($("#localidades").data("selected") != "") {
+				loadZonas($("#localidades").data("selected"));
+			}
+		});
+	}
+}
+
+function loadZonas(idLocalidad) {
+	// Assign handlers immediately after making the request,
+	// and remember the jqxhr object for this request
+	var jqxhr = $.getJSON("/admin/zonas/" + idLocalidad + "/search/json", function() {
+		//console.log( "success" );
+	}).fail(function() {
+	    console.log( "error" );
+	});
+	 
+	// Perform other work here ...
+	 
+	// Set another completion function for the request above
+	jqxhr.complete(function() {
+		if (jqxhr.responseJSON) {
+			var html = '<option value="0">Ninguna</option>';
+			var selected = '';
+			$.each(jqxhr.responseJSON, function(index, item) {
+				if (item.id == $("#zonas").data("selected")) {
+					selected = 'selected="selected"';
+				}
+				html += '<option value="' + item.id + '" ' + selected + '>' + item.name + '</option>';
+			});
+			$("#zonas select").html(html).selectpicker('refresh').selectpicker('show');
+		}
+
+	});
+}
