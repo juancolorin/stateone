@@ -8,7 +8,7 @@ use Laraveldaily\Quickadmin\Observers\UserActionsObserver;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Promociones extends Model {
+class Inmuebles extends Model {
 
     use SoftDeletes;
 
@@ -19,7 +19,7 @@ class Promociones extends Model {
     */
     protected $dates = ['deleted_at'];
 
-    protected $table    = 'promociones';
+    protected $table    = 'inmuebles';
     
     protected $fillable = [
           'estado',
@@ -28,13 +28,15 @@ class Promociones extends Model {
           'descripcion',
           'provincias_id',
           'localidades_id',
-    	  'propietarios_id',
           'zonas_id',
           'latitud',
           'longitud',
           'tiposinmuebles_id',
+    	  'promociones_id',
+    	  'propietarios_id',
           'precio',
           'precio_min',
+    	  'precio_alquiler',
           'direccion',
           'cp',
           'dormitorios',
@@ -101,7 +103,7 @@ class Promociones extends Model {
     {
         parent::boot();
 
-        Promociones::observe(new UserActionsObserver);
+        Inmuebles::observe(new UserActionsObserver);
     }
     
     public function provincias()
@@ -127,11 +129,14 @@ class Promociones extends Model {
         return $this->hasOne('App\TiposInmuebles', 'id', 'tiposinmuebles_id');
     }
 
+    public function promociones()
+    {
+    	return $this->hasOne('App\Promociones', 'id', 'promociones_id');
+    }
+    
     public function propietarios()
     {
     	return $this->hasOne('App\Propietarios', 'id', 'propietarios_id');
     }
-    
-    
     
 }

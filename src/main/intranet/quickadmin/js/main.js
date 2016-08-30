@@ -6,6 +6,11 @@ $(document).ready(function () {
         activeSub.parent().parent().find('.arrow').addClass('open');
         activeSub.parent().parent().addClass('open');
     }
+    
+    $('.selectpicker').selectpicker({
+    	  size: 4,
+    	  liveSearch: true
+    });
 
     $('.datatable').dataTable({
         retrieve: true,

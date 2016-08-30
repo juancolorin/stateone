@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Eloquent\Model;
 
-class CreatePromocionesTable extends Migration {
+class CreateInmueblesTable extends Migration {
 
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class CreatePromocionesTable extends Migration {
     public function up()
     {
         Model::unguard();
-        Schema::create('promociones',function(Blueprint $table){
+        Schema::create('inmuebles',function(Blueprint $table){
             $table->increments("id");
             $table->enum("estado", ["Disponible","Vendido", "Alquilado", "Reservado", "Oferta Presentada", "Baja"]);
             $table->enum("operacion", ["Venta", "Alquiler", "Alquiler con opción a compra", "Venta y Alquiler"]);
@@ -22,13 +22,15 @@ class CreatePromocionesTable extends Migration {
             $table->text("descripcion")->nullable();
             $table->integer("provincias_id")->references("id")->on("provincias")->nullable();
             $table->integer("localidades_id")->references("id")->on("localidades")->nullable();
-            $table->integer("propietarios_id")->references("id")->on("propietarios")->nullable();
             $table->integer("zonas_id")->references("id")->on("zonas")->nullable();
             $table->string("latitud")->nullable();
             $table->string("longitud")->nullable();
             $table->integer("tiposinmuebles_id")->references("id")->on("tiposinmuebles");
+            $table->integer("promociones_id")->references("id")->on("promociones");
+            $table->integer("propietarios_id")->references("id")->on("propietarios");
             $table->decimal("precio", 15, 2)->nullable();
             $table->decimal("precio_min", 15, 2)->nullable();
+            $table->decimal("precio_alquiler", 15, 2)->nullable();
             $table->string("direccion")->nullable();
             $table->string("cp")->nullable();
             $table->string("dormitorios")->nullable();
@@ -97,7 +99,7 @@ class CreatePromocionesTable extends Migration {
      */
     public function down()
     {
-        Schema::drop('promociones');
+        Schema::drop('inmuebles');
     }
 
 }

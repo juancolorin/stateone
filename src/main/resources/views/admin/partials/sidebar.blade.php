@@ -19,6 +19,12 @@
                         <span class="title">Clientes</span>
 					</a>
 				</li>
+				<li>
+                	<a href="{{ url(config('quickadmin.route').'/inmuebles') }}">
+                    	<i class="fa fa-home"></i>
+                        <span class="title">Inmuebles</span>
+					</a>
+				</li>
                 <li>
                 	<a href="{{ url(config('quickadmin.route').'/promociones') }}">
                     	<i class="fa fa-building-o"></i>

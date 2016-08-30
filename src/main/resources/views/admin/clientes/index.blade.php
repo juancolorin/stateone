@@ -13,16 +13,11 @@
             <table class="table table-striped table-hover table-responsive datatable" id="datatable">
                 <thead>
                     <tr>
-                        <th>Asignado</th>
-<th>Fecha de ingreso</th>
-<th>Medio de captación</th>
-<th>Email</th>
-<th>Telefono</th>
-<th>DNI/NIE/CIF</th>
-<th>Provincia</th>
-<th>Localidad</th>
-<th>C.P.</th>
-
+                    	<th>Nombre</th>
+						<th>Email</th>
+						<th>DNI/NIE/CIF</th>
+						<th>Medio de captación</th>
+						<th>Asignado</th>
                         <th>&nbsp;</th>
                     </tr>
                 </thead>
@@ -30,19 +25,11 @@
                 <tbody>
                     @foreach ($clientes as $row)
                         <tr>
-                            <td>
-                                {!! Form::checkbox('del-'.$row->id,1,false,['class' => 'single','data-id'=> $row->id]) !!}
-                            </td>
-                            <td>{{ isset($row->user->name) ? $row->user->name : '' }}</td>
-<td>{{ $row->fecha_ingreso }}</td>
-<td>{{ $row->medio_captacion }}</td>
-<td>{{ $row->email }}</td>
-<td>{{ $row->telefono }}</td>
-<td>{{ $row->document_number }}</td>
-<td>{{ $row->province }}</td>
-<td>{{ $row->town }}</td>
-<td>{{ $row->cp }}</td>
-
+                        	<td>{{ $row->name }}</td>
+							<td>{{ $row->email }}</td>
+							<td>{{ $row->document_number }}</td>
+							<td>{{ $row->medio_captacion }}</td>
+							<td>{{ isset($row->user->name) ? $row->user->name : '' }}</td>
                             <td>
                                 {!! link_to_route('admin.clientes.edit', trans('quickadmin::templates.templates-view_index-edit'), array($row->id), array('class' => 'btn btn-xs btn-info')) !!}
                                 {!! Form::open(array('style' => 'display: inline-block;', 'method' => 'DELETE', 'onsubmit' => "return confirm('".trans("quickadmin::templates.templates-view_index-are_you_sure")."');",  'route' => array('admin.clientes.destroy', $row->id))) !!}

@@ -16,6 +16,7 @@ use App\Provincias;
 use App\Localidades;
 use App\Zonas;
 use App\TiposInmuebles;
+use App\Propietarios;
 
 
 class PromocionesController extends Controller {
@@ -103,12 +104,13 @@ class PromocionesController extends Controller {
 	public function edit($id)
 	{
 		$promociones = Promociones::find($id);
-	    $provincias = Provincias::lists("name", "id")->prepend('Ninguno', '');
+	    $provincias = Provincias::lists("name", "id")->prepend('Ninguna', '');
 		$tiposinmuebles = TiposInmuebles::lists("name", "id")->prepend('Ninguno', '');
+		$propietarios = Propietarios::lists("name", "id")->prepend('Ninguno', '');
         $estado = Promociones::$estado;
         $operacion = Promociones::$operacion;
 
-		return view('admin.promociones.edit', compact('promociones', "provincias", "tiposinmuebles", "estado", "operacion", "operacion"));
+		return view('admin.promociones.edit', compact('promociones', "provincias", "tiposinmuebles", "estado", "operacion", "propietarios"));
 	}
 
 	/**
