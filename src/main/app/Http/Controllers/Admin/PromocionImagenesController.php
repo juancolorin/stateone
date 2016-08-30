@@ -45,6 +45,10 @@ class PromocionImagenesController extends Controller {
 		$destinationThumbnail = '/public/static/images/promociones/' . $request->get('promocion_id') . '/';
 		$destinationMobile = '/public/static/images/promociones/' . $request->get('promocion_id') . '/';
 		
+		if (!file_exists($destinationFolder)) {
+			mkdir(getcwd() . $destinationFolder, 0755, true);
+		}
+		
 		$marketingImage = new PromocionImagenes([
 				'image_name'        => $request->file('files')[0]->getClientOriginalName(),
 				'image_extension'   => $request->file('files')[0]->getClientOriginalExtension(),

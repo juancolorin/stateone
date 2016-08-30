@@ -45,6 +45,10 @@ class PromocionFicherosController extends Controller {
 		$destinationThumbnail = '/public/static/files/promociones/' . $request->get('promocion_id') . '/';
 		$destinationMobile = '/public/static/files/promociones/' . $request->get('promocion_id') . '/';
 		
+		if (!file_exists($destinationFolder)) {
+			mkdir(getcwd() . $destinationFolder, 0755, true);
+		}
+		
 		$marketingImage = new PromocionFicheros([
 				'image_name'        => $request->file('files')[0]->getClientOriginalName(),
 				'image_extension'   => $request->file('files')[0]->getClientOriginalExtension(),
@@ -61,7 +65,7 @@ class PromocionFicherosController extends Controller {
 	
 	   $marketingImage->image_path = $destinationFolder;
 	   $marketingImage->mobile_image_path = $destinationMobile;
-	
+	   
 	   // format checkbox values and save model
 	
 	   //$this->formatCheckboxValue($marketingImage);

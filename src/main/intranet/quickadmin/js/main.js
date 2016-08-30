@@ -104,11 +104,35 @@ $(document).ready(function () {
 	  $(".active.in").removeClass("active").removeClass("id");
 	  $(this).tab('show');
 	})
+	
+	$('a.linkMapa').on('click', function (e) {
+		var href = $(this).attr('href');
+		$(this).hide();
+		$(href).show();
+		$("a.cerrarMapa").show();
+		$("a.resetMap").show();
+		loadMap();
+	});
+	
+	$('a.cerrarMapa').on('click', function (e) {
+		var href = $(this).attr('href');
+		$(href).hide();
+		$(this).hide();
+		$("a.resetMap").hide();
+		$('a.linkMapa').show();
+	});
+	
+	$('a.resetMap').on('click', function (e) {
+		$("#long").val();
+		$("#lat").val();
+		loadMap();
+	});
     
     // Poner al final ya que da error
     $('.ckeditor').each(function () {
         CKEDITOR.replace($(this));
     })
+    
 });
 
 function loadLocalidades(idProvincia) {

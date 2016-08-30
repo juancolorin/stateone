@@ -18,6 +18,9 @@
 <script src="{{ url('quickadmin/file-upload') }}/js/jquery.fileupload-video.js"></script>
 <script src="{{ url('quickadmin/file-upload') }}/js/jquery.fileupload-validate.js"></script>
 
+<script src="http://maps.google.com/maps/api/js?sensor=true&language=es&region=ES"></script>
+<script src="{{ url('quickadmin/') }}/js/google-maps-punto.js"></script>
+
 <script src="{{ url('quickadmin/js') }}/gestion-promociones.js"></script>
 <script src="{{ url('quickadmin/js') }}/gestion-inmuebles.js"></script>
 

@@ -181,7 +181,7 @@ function fileUploadImagenesPromocion() {
 	        previewCrop: true
 	    }).on('fileuploadadd', function (e, data) {
 	    	console.log(1);
-	        data.context = $('<div class="col-md-2 overlow" />').appendTo('#ficheros-promocion-upload');
+	        data.context = $('<div class="col-md-2 overlow" />').appendTo('#imagenes-promocion-upload');
 	        $.each(data.files, function (index, file) {
 	            var node = $('<p/>')
 	                    .append($('<span/>').text(file.name));

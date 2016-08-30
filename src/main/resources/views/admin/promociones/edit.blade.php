@@ -108,6 +108,21 @@
 			</div>
 		</div>
 		<div class="form-group">
+			{!! Form::label('direccion', 'Dirección', array('class'=>'col-sm-2
+			control-label')) !!}
+			<div class="col-sm-10">{!! Form::text('direccion',
+				old('direccion',$promociones->direccion),
+				array('class'=>'form-control')) !!}
+			</div>
+		</div>
+		<div class="form-group">
+			{!! Form::label('cp', 'C.P.', array('class'=>'col-sm-2
+			control-label')) !!}
+			<div class="col-sm-10">{!! Form::text('cp',
+				old('cp',$promociones->cp), array('class'=>'form-control')) !!}
+			</div>
+		</div>
+		<div class="form-group">
 			{!! Form::label('latitud', 'Latitud', array('class'=>'col-sm-2
 			control-label')) !!}
 			<div class="col-sm-10">{!! Form::text('latitud',
@@ -123,6 +138,17 @@
 				array('class'=>'form-control')) !!}
 			</div>
 		</div>
+		<div class="form-group">
+			<label for="mapa" class="col-sm-2
+			control-label">Mapa</label>
+			<div class="col-sm-10">
+				<a href="#mapagoogle" class="btn btn-info linkMapa">VER MAPA</a>
+				<a href="#mapagoogle" class="btn btn-success resetMap" style="display:none;">REINICIAR</a>
+				<a href="#mapagoogle" class="btn btn-danger cerrarMapa" style="display:none;">CERRAR MAPA</a>
+				<div id="mapagoogle" style="display:none; width:100%; height: 300px;"></div>
+			</div>
+		</div>
+		
 		<div class="form-group">
 			{!! Form::label('tiposinmuebles_id', 'Tipo de inmueble (Principal)*',
 			array('class'=>'col-sm-2 control-label')) !!}
@@ -148,22 +174,6 @@
 				array('class'=>'form-control')) !!}
 			</div>
 		</div>
-		<div class="form-group">
-			{!! Form::label('direccion', 'Dirección', array('class'=>'col-sm-2
-			control-label')) !!}
-			<div class="col-sm-10">{!! Form::text('direccion',
-				old('direccion',$promociones->direccion),
-				array('class'=>'form-control')) !!}
-			</div>
-		</div>
-		<div class="form-group">
-			{!! Form::label('cp', 'C.P.', array('class'=>'col-sm-2
-			control-label')) !!}
-			<div class="col-sm-10">{!! Form::text('cp',
-				old('cp',$promociones->cp), array('class'=>'form-control')) !!}
-			</div>
-		</div>
-		
 		<div class="form-group">
 		    {!! Form::label('descripcion', 'Descripción', array('class'=>'col-sm-2 control-label')) !!}
 		    <div class="col-sm-10">
