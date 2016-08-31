@@ -156,8 +156,8 @@ function loadLocalidades(idProvincia) {
 		jqxhr.complete(function() {
 			if (jqxhr.responseJSON) {
 				var html = '<option value="0">Ninguna</option>';
-				var selected = '';
 				$.each(jqxhr.responseJSON, function(index, item) {
+					var selected = '';
 					if (item.id == $("#localidades").data("selected")) {
 						selected = 'selected="selected"';
 					}
@@ -191,8 +191,8 @@ function loadZonas(idLocalidad) {
 	jqxhr.complete(function() {
 		if (jqxhr.responseJSON) {
 			var html = '<option value="0">Ninguna</option>';
-			var selected = '';
 			$.each(jqxhr.responseJSON, function(index, item) {
+				var selected = '';
 				if (item.id == $("#zonas").data("selected")) {
 					selected = 'selected="selected"';
 				}

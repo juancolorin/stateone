@@ -39,7 +39,7 @@
                 processing: true,
                 serverSide: true,
                 language: {
-                    "url": "//cdn.datatables.net/plug-ins/1.10.12/i18n/Spanish.json"
+                    "url": "/quickadmin/js/Spanish.json"
                 },
                 ajax: {
                     url: "/admin/promociones/datatables",

@@ -147,8 +147,8 @@ class InmueblesController extends Controller {
 					$query->where('inmuebles.finca_registral', '=', $request->get('finca_registral'));
 				}
 				
-				if ($request->has('cod_externo') && $request->get('cod_externo') != "") {
-					$query->where('inmuebles.cod_externo', '=', $request->get('cod_externo'));
+				if ($request->has('codigo_externo') && $request->get('codigo_externo') != "") {
+					$query->where('inmuebles.codigo_externo', '=', $request->get('codigo_externo'));
 				}
 				
 			}

@@ -27,7 +27,7 @@ class Inmuebles extends Model {
           'nombre',
     	  'ref_catastral',
     	  'finca_registral',
-    	  'cod_externo',
+    	  'codigo_externo',
           'descripcion',
           'provincias_id',
           'localidades_id',

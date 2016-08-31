@@ -277,11 +277,6 @@
 				Form::checkbox('balcon', 1, $inmuebles->balcon
 				== 1) !!} Balcón
   			</li>
-  			<li class="list-group-item">
-  				{!! Form::hidden('balcon','') !!} {!!
-				Form::checkbox('balcon', 1, $inmuebles->balcon
-				== 1) !!} Balcón
-  			</li>
   		</ul>
   		<ul class="list-group col-sm-4">
   			<li class="list-group-item">
