@@ -45,7 +45,8 @@ class ZonasController extends Controller {
 	
 		return view('admin.zonas.index')->with(array(
 				'zonas' => $zonas,
-				'localidad' => $localidad
+				'localidad' => $localidad,
+				'idLocalidad' => $idLocalidad
 		));
 	}
 	
@@ -69,12 +70,14 @@ class ZonasController extends Controller {
 	 *
      * @return \Illuminate\View\View
 	 */
-	public function create()
+	public function create($idLocalidad)
 	{
 	    $localidades = Localidades::lists("name", "id")->prepend('Ninguno', '');
 
-	    
-	    return view('admin.zonas.create', compact("localidades"));
+	    return view('admin.zonas.create')->with(array(
+	    		'localidades' => $localidades,
+	    		'idLocalidad' => $idLocalidad
+	    ));
 	}
 
 	/**
@@ -87,7 +90,7 @@ class ZonasController extends Controller {
 	    
 		Zonas::create($request->all());
 
-		return redirect()->route('admin.zonas.index');
+		return $this->search($request->get('localidades_id'));
 	}
 
 	/**
@@ -100,7 +103,6 @@ class ZonasController extends Controller {
 	{
 		$zonas = Zonas::find($id);
 	    $localidades = Localidades::lists("name", "id")->prepend('Ninguno', '');
-
 	    
 		return view('admin.zonas.edit', compact('zonas', "localidades"));
 	}
@@ -114,12 +116,11 @@ class ZonasController extends Controller {
 	public function update($id, UpdateZonasRequest $request)
 	{
 		$zonas = Zonas::findOrFail($id);
-
-        
+		$localidades = Localidades::lists("name", "id")->prepend('Ninguno', '');
 
 		$zonas->update($request->all());
 
-		return redirect()->route('admin.zonas.index');
+		return view('admin.zonas.edit', compact('zonas', "localidades"));
 	}
 
 	/**
@@ -129,9 +130,11 @@ class ZonasController extends Controller {
 	 */
 	public function destroy($id)
 	{
+		$zonas = Zonas::find($id);
+		
 		Zonas::destroy($id);
 
-		return redirect()->route('admin.zonas.index');
+		return $this->search($zonas->localidades_id);
 	}
 
     /**

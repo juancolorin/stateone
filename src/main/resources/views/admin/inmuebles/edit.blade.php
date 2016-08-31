@@ -46,6 +46,30 @@
 			</div>
 		</div>
 		<div class="form-group">
+			{!! Form::label('ref_catastral', 'Ref. Catrastral', array('class'=>'col-sm-2
+			control-label')) !!}
+			<div class="col-sm-10">{!! Form::text('ref_catastral',
+				old('ref_catastral',$inmuebles->ref_catastral),
+				array('class'=>'form-control')) !!}
+			</div>
+		</div>
+		<div class="form-group">
+			{!! Form::label('finca_registral', 'Finca registral', array('class'=>'col-sm-2
+			control-label')) !!}
+			<div class="col-sm-10">{!! Form::text('finca_registral',
+				old('finca_registral',$inmuebles->finca_registral),
+				array('class'=>'form-control')) !!}
+			</div>
+		</div>
+		<div class="form-group">
+			{!! Form::label('codigo_externo', 'Cod externo', array('class'=>'col-sm-2
+			control-label')) !!}
+			<div class="col-sm-10">{!! Form::text('codigo_externo',
+				old('codigo_externo',$inmuebles->codigo_externo),
+				array('class'=>'form-control')) !!}
+			</div>
+		</div>
+		<div class="form-group">
 			{!! Form::label('publicado', 'Publicar en web',
 			array('class'=>'col-sm-2 control-label')) !!}
 			<div class="col-sm-10">{!! Form::hidden('publicado','') !!} {!!
@@ -635,9 +659,9 @@
 	{!! Form::close() !!}
 	
 	<div id="imagenes" class="tab-pane fade" role="tabpanel" aria-labelledby="imagenes-tab">
-		<form id="fileuploadImagenesPromocion" action="#" method="POST" enctype="multipart/form-data" data-promocion-id="{{ $inmuebles->id }}">
+		<form id="fileuploadImagenesInmueble" action="#" method="POST" enctype="multipart/form-data" data-inmueble-id="{{ $inmuebles->id }}">
 			<input name="_token" type="hidden" value="{{ csrf_token() }}">
-			<input name="promocion_id" type="hidden" value="{{$inmuebles->id}}">
+			<input name="inmueble_id" type="hidden" value="{{$inmuebles->id}}">
 	        <div class="row fileupload-buttonbar">
 	            <div class="col-lg-7">
 	                <span class="btn btn-success fileinput-button">
@@ -655,10 +679,10 @@
 	        </div>
 	        
 	        <br />
-	        <div id="imagenes-promocion-upload" class="row"></div>
+	        <div id="imagenes-inmueble-upload" class="row"></div>
 	        
 	        <h2>Imágenes</h2>
-	        <table role="presentation" id="listadoImagenesPromocion" data-promocion-id="{{ $inmuebles->id }}" data-token="{{ csrf_token() }}" class="table table-striped">
+	        <table role="presentation" id="listadoImagenesInmueble" data-inmueble-id="{{ $inmuebles->id }}" data-token="{{ csrf_token() }}" class="table table-striped">
 	        	<thead class="files">
 	        		<th>Imagen</th>
 	        		<th>Título</th>
@@ -672,9 +696,9 @@
 	</div>
 	
 	<div id="ficheros" class="tab-pane fade" role="tabpanel" aria-labelledby="ficheros-tab">
-		<form id="fileuploadFicherosPromocion" action="#" method="POST" enctype="multipart/form-data" data-promocion-id="{{ $inmuebles->id }}">
+		<form id="fileuploadFicherosInmueble" action="#" method="POST" enctype="multipart/form-data" data-inmueble-id="{{ $inmuebles->id }}">
 			<input name="_token" type="hidden" value="{{ csrf_token() }}">
-			<input name="promocion_id" type="hidden" value="{{$inmuebles->id}}">
+			<input name="inmueble_id" type="hidden" value="{{$inmuebles->id}}">
 	        <div class="row fileupload-buttonbar">
 	            <div class="col-lg-7">
 	                <span class="btn btn-success fileinput-button">
@@ -692,10 +716,10 @@
 	        </div>
 	        
 	        <br />
-	        <div id="ficheros-promocion-upload" class="row"></div>
+	        <div id="ficheros-inmueble-upload" class="row"></div>
 	        
 	        <h2>Ficheros</h2>
-	        <table role="presentation" id="listadoFicherosPromocion" data-promocion-id="{{ $inmuebles->id }}" data-token="{{ csrf_token() }}" class="table table-striped">
+	        <table role="presentation" id="listadoFicherosInmueble" data-inmueble-id="{{ $inmuebles->id }}" data-token="{{ csrf_token() }}" class="table table-striped">
 	        	<thead class="files">
 	        		<th>Fichero</th>
 	        		<th>Título</th>

@@ -45,7 +45,8 @@ class LocalidadesController extends Controller {
 		
 		return view('admin.localidades.index')->with(array(
 			'localidades' => $localidades,
-			'provincia' => $provincia
+			'provincia' => $provincia,
+			'idProvincia' => $idProvincia
 		));
 	}
 	
@@ -69,12 +70,14 @@ class LocalidadesController extends Controller {
 	 *
      * @return \Illuminate\View\View
 	 */
-	public function create()
+	public function create($idProvincia)
 	{
 	    $provincias = Provincias::lists("name", "id")->prepend('Ninguno', '');
 
-	    
-	    return view('admin.localidades.create', compact("provincias"));
+	    return view('admin.localidades.create')->with(array(
+			'provincias' => $provincias,
+			'idProvincia' => $idProvincia
+		));
 	}
 
 	/**
@@ -85,9 +88,9 @@ class LocalidadesController extends Controller {
 	public function store(CreateLocalidadesRequest $request)
 	{
 	    
-		Localidades::create($request->all());
-
-		return redirect()->route('admin.localidades.index');
+		$localidad = Localidades::create($request->all());
+		
+		return $this->search($request->get('provincias_id'));
 	}
 
 	/**
@@ -100,7 +103,6 @@ class LocalidadesController extends Controller {
 	{
 		$localidades = Localidades::find($id);
 	    $provincias = Provincias::lists("name", "id")->prepend('Ninguno', '');
-
 	    
 		return view('admin.localidades.edit', compact('localidades', "provincias"));
 	}
@@ -114,12 +116,11 @@ class LocalidadesController extends Controller {
 	public function update($id, UpdateLocalidadesRequest $request)
 	{
 		$localidades = Localidades::findOrFail($id);
-
-        
+		$provincias = Provincias::lists("name", "id")->prepend('Ninguno', '');
 
 		$localidades->update($request->all());
 
-		return redirect()->route('admin.localidades.index');
+		return view('admin.localidades.edit', compact('localidades', "provincias"));
 	}
 
 	/**
@@ -129,9 +130,10 @@ class LocalidadesController extends Controller {
 	 */
 	public function destroy($id)
 	{
+		$localidades = Localidades::find($id);
 		Localidades::destroy($id);
 
-		return redirect()->route('admin.localidades.index');
+		return $this->search($localidades->provincias_id);
 	}
 
     /**

@@ -6,7 +6,9 @@
 
 <h2>{{ $localidad->name }}</h2>
 
-<p>{!! link_to_route('admin.zonas.create', trans('quickadmin::templates.templates-view_index-add_new') , null, array('class' => 'btn btn-success')) !!}</p>
+<p>
+	<a href="/admin/zonas/{{ $idLocalidad }}/create" class="btn btn-success">Crear nueva zona</a>
+</p>
 
 @if ($zonas->count())
     <div class="portlet box green">

@@ -27,7 +27,7 @@
 </div><div class="form-group">
     {!! Form::label('localidades_id', 'Localidad*', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10">
-        {!! Form::select('localidades_id', $localidades, old('localidades_id'), array('class'=>'form-control')) !!}
+        {!! Form::select('localidades_id', $localidades, old('localidades_id', $idLocalidad), array('class'=>'form-control', 'readonly' => 'true')) !!}
         
     </div>
 </div>

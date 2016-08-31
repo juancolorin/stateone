@@ -45,7 +45,7 @@ class PromocionImagenesController extends Controller {
 		$destinationThumbnail = '/public/static/images/promociones/' . $request->get('promocion_id') . '/';
 		$destinationMobile = '/public/static/images/promociones/' . $request->get('promocion_id') . '/';
 		
-		if (!file_exists($destinationFolder)) {
+		if (!file_exists(getcwd() . $destinationFolder)) {
 			mkdir(getcwd() . $destinationFolder, 0755, true);
 		}
 		

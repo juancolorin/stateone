@@ -92,12 +92,6 @@ function loadImagenesPromocion(idPromocion, token) {
 }
 
 function guardarImagenPromocion(id, name, principal, publicada, idPromocion, token) {
-	 $.ajaxSetup({
-         headers: {
-             'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-         }
-     })
-
      var formData = {
 		 id: id,
 		 is_featured: principal,
@@ -328,12 +322,6 @@ function loadFicherosPromocion(idPromocion, token) {
 }
 
 function guardarFicheroPromocion(id, name, principal, publicada, idPromocion, token) {
-	 $.ajaxSetup({
-         headers: {
-             'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-         }
-     })
-
      var formData = {
 		 id: id,
 		 is_featured: principal,

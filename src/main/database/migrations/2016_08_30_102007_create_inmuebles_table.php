@@ -19,6 +19,9 @@ class CreateInmueblesTable extends Migration {
             $table->enum("estado", ["Disponible","Vendido", "Alquilado", "Reservado", "Oferta Presentada", "Baja"]);
             $table->enum("operacion", ["Venta", "Alquiler", "Alquiler con opción a compra", "Venta y Alquiler"]);
             $table->string("nombre");
+            $table->string("ref_catastral");
+            $table->string("finca_registral");
+            $table->string("cod_externo");
             $table->text("descripcion")->nullable();
             $table->integer("provincias_id")->references("id")->on("provincias")->nullable();
             $table->integer("localidades_id")->references("id")->on("localidades")->nullable();

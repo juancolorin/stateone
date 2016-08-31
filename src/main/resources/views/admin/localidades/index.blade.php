@@ -6,7 +6,9 @@
 
 <h2>{{ $provincia->name }}</h2>
 
-<p>{!! link_to_route('admin.localidades.create', trans('quickadmin::templates.templates-view_index-add_new') , null, array('class' => 'btn btn-success')) !!}</p>
+<p>
+	<a href="/admin/localidades/{{ $idProvincia }}/create" class="btn btn-success">Crear nueva localidad</a>
+</p>
 
 @if ($localidades->count())
     <div class="portlet box green">

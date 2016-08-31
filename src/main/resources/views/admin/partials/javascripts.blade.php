@@ -1,4 +1,19 @@
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+$.ajaxSetup({
+	headers: {
+    	'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+	}
+});
+
+$.ajaxPrefilter(function(options, originalOptions, xhr) { // this will run before each request
+    var token = $('meta[name="csrf-token"]').attr('content'); // or _token, whichever you are using
+
+    if (token) {
+        return xhr.setRequestHeader('X-CSRF-TOKEN', token); // adds directly to the XmlHttpRequest Object
+    }
+});
+</script>            
 <script src="//cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
 <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
 <script src="{{ url('quickadmin/js') }}/timepicker.js"></script>

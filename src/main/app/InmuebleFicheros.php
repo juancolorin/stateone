@@ -7,7 +7,7 @@ use Laraveldaily\Quickadmin\Observers\UserActionsObserver;
 
 class InmuebleFicheros extends Model {
 
-    protected $table    = 'Inmueble_ficheros';
+    protected $table    = 'inmueble_ficheros';
     
     protected $fillable = ['is_active',
     								'title',
@@ -18,7 +18,7 @@ class InmuebleFicheros extends Model {
                                     'mobile_image_name',
                                     'mobile_image_path',
                                     'mobile_extension',
-    								'Inmueble_id'
+    								'inmueble_id'
     ];
 
     public static function boot()
@@ -30,13 +30,13 @@ class InmuebleFicheros extends Model {
     
     public function inmuebles()
     {
-        return $this->hasOne('App\Inmuebles', 'id', 'Inmueble_id');
+        return $this->hasOne('App\Inmuebles', 'id', 'inmueble_id');
     }
 
     public function loadByIdInmueble($idInmueble)
     {
     	$dql = new InmuebleFicheros;
-    	$dql = $dql->where('Inmueble_id', '=', $idInmueble);
+    	$dql = $dql->where('inmueble_id', '=', $idInmueble);
     	return $dql->get();
     }
     

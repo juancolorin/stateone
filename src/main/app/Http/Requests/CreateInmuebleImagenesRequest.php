@@ -31,7 +31,7 @@ class CreateInmuebleImagenesRequest extends Request
 				'is_featured' => 'boolean',
 				'image' => 'mimes:jpeg,jpg,bmp,png | max:1000',
 				'mobile_image' => 'mimes:jpeg,jpg,bmp,png | max:1000',
-				'promocion_id' => 'required',
+				'inmueble_id' => 'required',
 		];
 	}
 }

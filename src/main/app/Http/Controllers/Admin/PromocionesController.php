@@ -90,9 +90,8 @@ class PromocionesController extends Controller {
 	 */
 	public function store(CreatePromocionesRequest $request)
 	{
-		Promociones::create($request->all());
-
-		return redirect()->route('admin.promociones.index');
+		$promocion = Promociones::create($request->all());
+		return $this->edit($promocion->id);
 	}
 
 	/**

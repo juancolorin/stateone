@@ -45,7 +45,7 @@ class InmuebleImagenesController extends Controller {
 		$destinationThumbnail = '/public/static/images/inmuebles/' . $request->get('inmueble_id') . '/';
 		$destinationMobile = '/public/static/images/inmuebles/' . $request->get('inmueble_id') . '/';
 		
-		if (!file_exists($destinationFolder)) {
+		if (!file_exists(getcwd() . $destinationFolder)) {
 			mkdir(getcwd() . $destinationFolder, 0755, true);
 		}
 		

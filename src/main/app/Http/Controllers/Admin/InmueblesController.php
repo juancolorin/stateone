@@ -139,6 +139,18 @@ class InmueblesController extends Controller {
 					$query->where('inmuebles.aseos', '=', $request->get('aseos'));
 				}
 				
+				if ($request->has('ref_catastral') && $request->get('ref_catastral') != "") {
+					$query->where('inmuebles.ref_catastral', '=', $request->get('ref_catastral'));
+				}
+				
+				if ($request->has('finca_registral') && $request->get('finca_registral') != "") {
+					$query->where('inmuebles.finca_registral', '=', $request->get('finca_registral'));
+				}
+				
+				if ($request->has('cod_externo') && $request->get('cod_externo') != "") {
+					$query->where('inmuebles.cod_externo', '=', $request->get('cod_externo'));
+				}
+				
 			}
 			
 		})
@@ -170,9 +182,8 @@ class InmueblesController extends Controller {
 	 */
 	public function store(CreateInmueblesRequest $request)
 	{
-		Inmuebles::create($request->all());
-
-		return redirect()->route('admin.inmuebles.index');
+		$inmueble = Inmuebles::create($request->all());
+		return $this->edit($inmueble->id);
 	}
 
 	/**

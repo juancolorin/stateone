@@ -14,6 +14,30 @@
 				</div>
 			</div>
 			<div class="form-group">
+				{!! Form::label('ref_catastral', 'Ref. Cat.', array('class'=>'col-sm-3
+				control-label')) !!}
+				<div class="col-sm-9">{!! Form::text('ref_catastral',
+					old('ref_catastral',null),
+					array('class'=>'form-control')) !!}
+				</div>
+			</div>
+			<div class="form-group">
+				{!! Form::label('finca_registral', 'Fin. reg.', array('class'=>'col-sm-3
+				control-label')) !!}
+				<div class="col-sm-9">{!! Form::text('finca_registral',
+					old('finca_registral',null),
+					array('class'=>'form-control')) !!}
+				</div>
+			</div>
+			<div class="form-group">
+				{!! Form::label('codigo_externo', 'Cod ext.', array('class'=>'col-sm-3
+				control-label')) !!}
+				<div class="col-sm-9">{!! Form::text('codigo_externo',
+					old('codigo_externo',null),
+					array('class'=>'form-control')) !!}
+				</div>
+			</div>
+			<div class="form-group">
 				{!! Form::label('estado', 'Estado', array('class'=>'col-sm-3
 				control-label')) !!}
 				<div class="col-sm-9">{!! Form::select('estado', [null=>'Ninguno'] + $estado,
@@ -37,20 +61,14 @@
 					array('class'=>'form-control selectpicker')) !!}
 				</div>
 			</div>
+		</div>
+		<div class="col-sm-4">
 			<div class="form-group">
 				{!! Form::label('publicado', 'En web', array('class'=>'col-sm-3 control-label')) !!}
 				<div class="col-sm-9">
 					{!! Form::checkbox('publicado', NULL, NULL) !!}
 				</div>
 			</div>
-			<div class="form-group">
-				<label for="pvp_desde" class="col-sm-3 control-label">€ desde:</label>
-				<div class="col-sm-9">
-					<input class="form-control" name="pvp_desde" type="text" id="pvp_desde">
-				</div>
-			</div>
-		</div>
-		<div class="col-sm-4">
 			<div class="form-group">
 				{!! Form::label('promociones_id', 'Promoción',
 				array('class'=>'col-sm-3 control-label')) !!}
@@ -90,17 +108,17 @@
 				</div>
 			</div>
 			<div class="form-group">
+				<label for="pvp_desde" class="col-sm-3 control-label">€ desde:</label>
+				<div class="col-sm-9">
+					<input class="form-control" name="pvp_desde" type="text" id="pvp_desde">
+				</div>
+			</div>
+			<div class="form-group">
 				{!! Form::label('direccion', 'Dirección', array('class'=>'col-sm-3
 				control-label')) !!}
 				<div class="col-sm-9">{!! Form::text('direccion',
 					old('direccion',NULL),
 					array('class'=>'form-control')) !!}
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="pvp_hasta" class="col-sm-3 control-label">€ hasta:</label>
-				<div class="col-sm-9">
-					<input class="form-control" name="pvp_hasta" type="text" id="pvp_hasta">
 				</div>
 			</div>
 		</div>
@@ -112,7 +130,6 @@
 					old('cp',NULL), array('class'=>'form-control')) !!}
 				</div>
 			</div>
-			
 			<div class="form-group">
 				{!! Form::label('tiposinmuebles_id', 'Tipo',
 				array('class'=>'col-sm-3 control-label')) !!}
@@ -122,7 +139,6 @@
 					array('class'=>'form-control')) !!}
 				</div>
 			</div>
-			
 			<div class="form-group">
 				{!! Form::label('dormitorios', 'Dormitorios',
 				array('class'=>'col-sm-3 control-label')) !!}
@@ -145,6 +161,12 @@
 				<div class="col-sm-9">{!! Form::text('aseos',
 					old('aseos',NULL), array('class'=>'form-control'))
 					!!}
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="pvp_hasta" class="col-sm-3 control-label">€ hasta:</label>
+				<div class="col-sm-9">
+					<input class="form-control" name="pvp_hasta" type="text" id="pvp_hasta">
 				</div>
 			</div>
 			<div class="form-group">
@@ -219,6 +241,9 @@
                         d.dormitorios = $('#dormitorios').val();
                         d.banos = $('#banos').val();
                         d.aseos = $('#aseos').val();
+                        d.ref_catastral = $('#ref_catastral').val();
+                        d.finca_registral = $('#finca_registral').val();
+                        d.cod_externo = $('#cod_externo').val();
                     }
                 },
                 columns: [

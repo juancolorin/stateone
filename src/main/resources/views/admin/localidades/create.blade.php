@@ -4,7 +4,7 @@
 
 <div class="row">
     <div class="col-sm-10 col-sm-offset-2">
-        <h1>{{ trans('quickadmin::templates.templates-view_create-add_new') }}</h1>
+        <h1>Crear nueva localidad</h1>
 
         @if ($errors->any())
         	<div class="alert alert-danger">
@@ -27,7 +27,7 @@
 </div><div class="form-group">
     {!! Form::label('provincias_id', 'Provincia*', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10">
-        {!! Form::select('provincias_id', $provincias, old('provincias_id'), array('class'=>'form-control')) !!}
+        {!! Form::select('provincias_id', $provincias, old('provincias_id', $idProvincia), array('class'=>'form-control', 'readonly' => 'true')) !!}
         
     </div>
 </div>
