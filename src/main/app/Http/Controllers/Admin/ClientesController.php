@@ -120,5 +120,51 @@ class ClientesController extends Controller {
 
         return redirect()->route('admin.clientes.index');
     }
-
+    
+    public function pv(Request $request)
+    {
+    	$data = array();
+    	$data["name"] = $request->input('name');
+    	$data["document_number"] = $request->input('document_number');
+    	$data["telefono"] = $request->input('telefono');
+    	$data["email"] = $request->input('email');
+    	$data["address"] = $request->input('address');
+    	$data["inmueble_provincia"] = $request->input('inmueble_provincia');
+    	$data["inmueble_poblacion"] = $request->input('inmueble_poblacion');
+    	$data["inmueble_visitado"] = $request->input('inmueble_visitado');
+    	$data["year"] = date('Y');
+    	$data["day"] = date('d');
+    	$month = "";
+    	if (date('m') == 1) {
+    		$month = "Enero";
+    	} elseif (date('m') == 2) {
+    		$month = "Febrero";
+    	} elseif (date('m') == 3) {
+    		$month = "Marzo";
+    	} elseif (date('m') == 4) {
+    		$month = "Abril";
+    	} elseif (date('m') == 5) {
+    		$month = "Mayo";
+    	} elseif (date('m') == 6) {
+    		$month = "Junio";
+    	} elseif (date('m') == 7) {
+    		$month = "Julio";
+    	} elseif (date('m') == 8) {
+    		$month = "Agosto";
+    	} elseif (date('m') == 9) {
+    		$month = "Septiembre";
+    	} elseif (date('m') == 10) {
+    		$month = "Octubre";
+    	} elseif (date('m') == 11) {
+    		$month = "Noviembre";
+    	} elseif (date('m') == 12) {
+    		$month = "Diciembre";
+    	}
+    	$data["month"] = $month;
+    	$view =  \View::make('admin.clientes.pv', compact('data'))->render();
+    	$pdf = \App::make('dompdf.wrapper');
+    	$pdf->loadHTML($view);
+    	return $pdf->stream('pv');
+    }
+    
 }
